@@ -5,7 +5,6 @@ import { SearchParams, SortDirection } from "../../../domain/repository/search-p
 import { SearchResult } from "../../../domain/repository/search-result";
 import { ValueObject } from "../../../domain/value-object";
 
-
 export abstract class InMemoryRepository<E extends Entity, EntityId extends ValueObject>
   implements IRepository<E, EntityId> {
 
@@ -47,15 +46,15 @@ export abstract class InMemoryRepository<E extends Entity, EntityId extends Valu
   abstract getEntity(): new (...args: any[]) => E;
 }
 
-export abstract class InMemorySearchbleRepository<
+export abstract class InMemorySearchableRepository<
   E extends Entity,
   EntityId extends ValueObject,
   Filter = string
->
-  extends InMemoryRepository<E, EntityId>
+> extends InMemoryRepository<E, EntityId>
   implements ISearchableRepository<E, EntityId, Filter> {
 
   sortableFields: string[] = [];
+
   async search(props: SearchParams<Filter>): Promise<SearchResult<Entity>> {
     const itemsFiltered = await this.applyFilter(this.items, props.filter);
     const itemsSorted = this.applySort(itemsFiltered, props.sort, props.sort_dir);
@@ -66,10 +65,11 @@ export abstract class InMemorySearchbleRepository<
       total: itemsFiltered.length,
       current_page: props.page,
       per_page: props.per_page,
-    })
+    });
+
   }
 
-  protected abstract applyFilter(Items: E[], filter: Filter | null): Promise<E[]>;
+  protected abstract applyFilter(items: E[], filter: Filter | null): Promise<E[]>;
 
   protected applyPaginate(items: E[], page: SearchParams['page'], per_page: SearchParams['per_page']) {
     const start = (page - 1) * per_page;
