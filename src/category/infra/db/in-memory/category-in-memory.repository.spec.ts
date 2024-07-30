@@ -1,4 +1,4 @@
-import { Category } from "../../domain/category.entity";
+import { Category } from "../../../domain/category.entity";
 import { CategoryInMemoryRepository } from "./category-in-memory.repository";
 
 describe('CategoryInMemoryRepository', () => {
@@ -7,9 +7,7 @@ describe('CategoryInMemoryRepository', () => {
   beforeEach(() => (repo = new CategoryInMemoryRepository()));
 
   it('Should no filter items when filter object is null', async () => {
-    const items = [
-      Category.create({ name: 'test' })
-    ];
+    const items = [Category.fake().aCategory().build()];
     const filterSpy = jest.spyOn(items, 'filter' as any);
 
     const itemsFiltered = await repo['applyFilter'](items, null);
@@ -19,9 +17,9 @@ describe('CategoryInMemoryRepository', () => {
 
   it('Sould filter items using parameter', async () => {
     const items = [
-      Category.create({ name: 'test' }),
-      Category.create({ name: 'TEST' }),
-      Category.create({ name: 'fake' })
+      Category.fake().aCategory().withName('test').build(),
+      Category.fake().aCategory().withName('TEST').build(),
+      Category.fake().aCategory().withName('fake').build()
     ];
     const filterSpy = jest.spyOn(items, 'filter');
 
@@ -37,10 +35,26 @@ describe('CategoryInMemoryRepository', () => {
     const created_at = new Date();
     const createTime = (ms: number) => new Date(created_at.getTime() + ms);
     const items = [
-      Category.create({ name: 'test', created_at }),
-      Category.create({ name: 'test 1', created_at: createTime(100) }),
-      Category.create({ name: 'test 2', created_at: createTime(400) }),
-      Category.create({ name: 'test 3', created_at: createTime(900) }),
+      Category.fake()
+        .aCategory()
+        .withName('test')
+        .withCreatedAt(createTime(50))
+        .build(),
+      Category.fake()
+        .aCategory()
+        .withName('test 1')
+        .withCreatedAt(createTime(100))
+        .build(),
+      Category.fake()
+        .aCategory()
+        .withName('test 2')
+        .withCreatedAt(createTime(200))
+        .build(),
+      Category.fake()
+        .aCategory()
+        .withName('test 3')
+        .withCreatedAt(createTime(300))
+        .build()
     ];
     const itemsSorted = await repo['applySort'](items, null, null);
     expect(itemsSorted).toStrictEqual(items.reverse());
@@ -48,9 +62,9 @@ describe('CategoryInMemoryRepository', () => {
 
   it('Shloud sort by name', async () => {
     const items = [
-      Category.create({ name: 'c' }),
-      Category.create({ name: 'b' }),
-      Category.create({ name: 'a' })
+      Category.fake().aCategory().withName('c').build(),
+      Category.fake().aCategory().withName('b').build(),
+      Category.fake().aCategory().withName('a').build(),
     ];
 
     let itemsSorted = await repo['applySort'](items, 'name', 'asc');
