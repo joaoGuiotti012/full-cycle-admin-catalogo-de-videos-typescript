@@ -55,7 +55,7 @@ export abstract class InMemorySearchableRepository<
 
   sortableFields: string[] = [];
 
-  async search(props: SearchParams<Filter>): Promise<SearchResult<Entity>> {
+  async search(props: SearchParams<Filter>): Promise<SearchResult<E>> {
     const itemsFiltered = await this.applyFilter(this.items, props.filter);
     const itemsSorted = this.applySort(itemsFiltered, props.sort, props.sort_dir);
     const itemsPaginated = this.applyPaginate(itemsSorted, props.page, props.per_page);
