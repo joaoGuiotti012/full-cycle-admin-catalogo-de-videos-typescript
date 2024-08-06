@@ -4,21 +4,12 @@ import { EntityValidationError } from "../../../../../shared/domain/validators/v
 import { CategoryModelMapper } from "../category-model-mapper";
 import { Uuid } from "../../../../../shared/domain/value-objects/uuid.vo";
 import { Category } from "../../../../domain/category.entity";
+import { setupSequelize } from "../../../../../shared/infra/helpers/helpers";
 
 
 describe('CategoryModelMapper Integration Test', () => {
 
-  let sequilize: Sequelize;
-
-  beforeEach(async () => {
-    sequilize = new Sequelize({
-      dialect: 'sqlite',
-      storage: ':memory',
-      models: [CategoryModel],
-      logging: false
-    });
-    await sequilize.sync({ force: true });
-  });
+  setupSequelize({ models: [CategoryModel] });
 
   it('Should throw error when category is invalid', () => {
     expect.assertions(2);

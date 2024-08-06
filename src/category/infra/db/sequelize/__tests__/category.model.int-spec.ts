@@ -1,20 +1,11 @@
-import { DataType, PrimaryKey, Sequelize } from "sequelize-typescript"
+import { DataType } from "sequelize-typescript"
 import { CategoryModel } from "../category.model";
-import { Category } from "../../../../domain/category.entity";
+import { setupSequelize } from "../../../../../shared/infra/helpers/helpers";
 
 // Teste de integração 
 describe('CategoryModel Integration Test', () => {
-  let sequelize: Sequelize;
 
-  beforeEach(async () => {
-    sequelize = new Sequelize({
-      dialect: 'sqlite',
-      storage: ':memory:',
-      models: [CategoryModel],
-      logging: false
-    });
-    await sequelize.sync({ force: true });
-  });
+  setupSequelize({ models: [CategoryModel] });
 
   test('Mapping props', () => {
     const attributesMap = CategoryModel.getAttributes();
@@ -34,7 +25,7 @@ describe('CategoryModel Integration Test', () => {
       primaryKey: true,
       type: DataType.UUID()
     });
-    
+
     const nameAttr = attributesMap.name;
     expect(nameAttr).toMatchObject({
       field: 'name',
@@ -58,7 +49,7 @@ describe('CategoryModel Integration Test', () => {
       allowNull: false,
       type: DataType.BOOLEAN()
     });
-    
+
     const createdAtAttr = attributesMap.created_at;
     expect(createdAtAttr).toMatchObject({
       field: 'created_at',
@@ -76,7 +67,7 @@ describe('CategoryModel Integration Test', () => {
       is_active: true,
       created_at: new Date()
     }
-    const category =  await CategoryModel.create(arrange);
+    const category = await CategoryModel.create(arrange);
     expect(category.toJSON()).toStrictEqual(arrange);
   })
 })
