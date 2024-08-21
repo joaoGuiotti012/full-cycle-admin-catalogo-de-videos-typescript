@@ -40,7 +40,7 @@ export class CategorySequelizeRepository implements ICategoryRepository {
     const model = await this._get(id);
     if (!model) {
       throw new NotFoundError(id, this.getEntity());
-    }
+    } 
     this.categoryModel.destroy({ where: { category_id: id } });
   }
 

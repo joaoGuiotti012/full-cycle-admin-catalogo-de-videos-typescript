@@ -2,7 +2,7 @@ import { ValueObject } from "../value-object";
 
 export type SortDirection = 'asc' | 'desc';
 
-export type SearchPramsConstructorProps<Filter = string> = {
+export type SearchParamsConstructorProps<Filter = string> = {
   page?: number;
   per_page?: number;
   sort?: string | null;
@@ -17,7 +17,7 @@ export class SearchParams<Filter = string> extends ValueObject {
   protected _sort_dir?: SortDirection | null;
   protected _filter?: Filter | null;
 
-  constructor(props: SearchPramsConstructorProps<Filter> = {}) {
+  constructor(props: SearchParamsConstructorProps<Filter> = {}) {
     super();
     this.page = props.page;
     this.per_page = props.per_page;
