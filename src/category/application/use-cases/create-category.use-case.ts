@@ -15,7 +15,6 @@ export class CreateCategoryUseCase
 
     return CategoryOutputMapper.toOutput(entity);
   }
-
 }
 
 export type CreateCategoryInput = {

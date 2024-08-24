@@ -1,6 +1,5 @@
 import { setupSequelize } from "../../../../../shared/infra/helpers/helpers";
 import { Category } from "../../../../domain/category.entity";
-import { CategoryInMemoryRepository } from "../../../../infra/db/in-memory/category-in-memory.repository";
 import { CategorySequelizeRepository } from "../../../../infra/db/sequelize/category-sequelize.repository";
 import { CategoryModel } from "../../../../infra/db/sequelize/category.model";
 import { CategoryOutputMapper } from "../../common/category-output";

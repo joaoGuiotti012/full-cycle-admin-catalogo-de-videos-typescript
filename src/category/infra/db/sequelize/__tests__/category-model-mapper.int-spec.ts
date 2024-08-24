@@ -1,4 +1,3 @@
-import { Sequelize } from "sequelize-typescript";
 import { CategoryModel } from "../category.model";
 import { EntityValidationError } from "../../../../../shared/domain/validators/validation.error";
 import { CategoryModelMapper } from "../category-model-mapper";
@@ -15,18 +14,18 @@ describe('CategoryModelMapper Integration Test', () => {
     expect.assertions(2);
     const model = CategoryModel.build({
       category_id: '9366b7dc-2d71-4799-b91c-c64adb205104',
-      name: 'a'.repeat(256),
+      name: 'a'.repeat(256)
     });
     try {
       CategoryModelMapper.toEntity(model)
       fail('The Category is valid, but it needs throw a EntityValidationError');
     } catch (e) {
       expect(e).toBeInstanceOf(EntityValidationError);
-      expect((e as EntityValidationError).error).toMatchObject(
+      expect((e as EntityValidationError).error).toMatchObject([
         {
-          name: ['name must be shorter than or equal to 255 characters'],
+          'name': ['name must be shorter than or equal to 255 characters'],
         }
-      );
+      ]);
     }
   });
 
