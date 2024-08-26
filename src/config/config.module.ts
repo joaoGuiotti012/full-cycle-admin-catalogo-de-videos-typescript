@@ -3,7 +3,7 @@ import { ConfigModuleOptions, ConfigModule as NestConfigModule } from '@nestjs/c
 import { join } from 'path';
 import Joi from 'joi';
 
-type DB_SCHEMA_TYPE = {
+export type DB_SCHEMA_TYPE = {
   DB_VENDOR: 'mysql' | 'sqlite';
   DB_HOST: string;
   DB_PORT: number;
