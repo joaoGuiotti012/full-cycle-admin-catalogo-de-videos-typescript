@@ -5,11 +5,11 @@ import { CategoryFilter, CategorySearchParams, CategorySearchResult, ICategoryRe
 import { CategoryOutput, CategoryOutputMapper } from "../common/category-output";
 
 export class ListCategoriesUseCase
-  implements IUseCase<ListcategoriesInput, ListCategoriesOutput> {
+  implements IUseCase<ListCategoriesInput, ListCategoriesOutput> {
 
   constructor(private repo: ICategoryRepository) { }
 
-  async execute(input: ListcategoriesInput): Promise<ListCategoriesOutput> {
+  async execute(input: ListCategoriesInput): Promise<ListCategoriesOutput> {
     const params = new CategorySearchParams(input);
     const searchResult = await this.repo.search(params);
     return this.toOutput(searchResult);
@@ -25,5 +25,5 @@ export class ListCategoriesUseCase
   }
 }
 
-export type ListcategoriesInput = SearchParamsConstructorProps<CategoryFilter>;
+export type ListCategoriesInput = SearchParamsConstructorProps<CategoryFilter>;
 export type ListCategoriesOutput = PaginationOutput<CategoryOutput>;
