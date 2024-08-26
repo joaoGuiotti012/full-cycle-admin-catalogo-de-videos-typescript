@@ -21,7 +21,7 @@ describe('CategorySequelizeRepository Integration it', () => {
     let category = Category.fake().aCategory().withName('movie').build();
     await repository.insert(category);
     let entity = await repository.findById(category.category_id);
-    expect(entity.toJSON()).toStrictEqual(category.toJSON());
+    expect(entity?.toJSON()).toStrictEqual(category.toJSON());
 
     category = Category.fake().aCategory()
       .withName('Movie')
@@ -30,7 +30,7 @@ describe('CategorySequelizeRepository Integration it', () => {
 
     await repository.insert(category);
     entity = await repository.findById(category.category_id);
-    expect(entity.toJSON()).toStrictEqual(category.toJSON());
+    expect(entity?.toJSON()).toStrictEqual(category.toJSON());
   });
 
   it('Should finds a entoty by id', async () => {
@@ -40,7 +40,7 @@ describe('CategorySequelizeRepository Integration it', () => {
     const category = Category.fake().aCategory().withName('Movie').build();
     await repository.insert(category);
     entityFound = await repository.findById(category.category_id);
-    expect(category.toJSON()).toStrictEqual(entityFound.toJSON());
+    expect(category.toJSON()).toStrictEqual(entityFound?.toJSON());
   });
 
   it('Should return all categories', async () => {
@@ -67,7 +67,7 @@ describe('CategorySequelizeRepository Integration it', () => {
     await repository.update(category);
 
     const entityFound = await repository.findById(category.category_id);
-    expect(category.toJSON()).toStrictEqual(entityFound.toJSON());
+    expect(category.toJSON()).toStrictEqual(entityFound?.toJSON());
   });
 
   it('Should throw error on delete when a entity not found', async () => {

@@ -86,7 +86,7 @@ describe('In MemoryRepository Unit Test', () => {
     const aggregate = new StubEntity({ name: "Name", price: 5 });
     await repo.insert(aggregate);
     const entityFound = await repo.findById(aggregate.entity_id);
-    expect(entityFound.entity_id).toBe(aggregate.entity_id);
+    expect(entityFound?.entity_id).toBe(aggregate.entity_id);
   });
 
   it('Should throw error on update when entity not found', async () => {

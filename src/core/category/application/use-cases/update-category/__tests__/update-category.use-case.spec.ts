@@ -48,7 +48,7 @@ describe('UpdateCategoryUseCase Unit Test', () => {
       input: {
         id: string;
         name: string;
-        description?: string,
+        description?: string | null,
         is_active?: boolean;
       };
       expected: {
@@ -149,7 +149,7 @@ describe('UpdateCategoryUseCase Unit Test', () => {
     for (const i of arrange) {
       output = await useCase.execute({
         id: i.input.id,
-        ...('name' in i.input && { name: i.input.name }),
+        name: i.input.name,
         ...('description' in i.input && { description: i.input.description }),
         ...('is_active' in i.input && { is_active: i.input.is_active }),
       });
