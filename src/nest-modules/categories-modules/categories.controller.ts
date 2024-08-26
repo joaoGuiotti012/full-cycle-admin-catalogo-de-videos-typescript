@@ -8,6 +8,8 @@ import {
   DeleteCategoryUseCase,
   ListCategoriesUseCase
 } from '@core/category/application/use-cases';
+import { CategoryPresenter } from './category.presenter';
+import { CategoryOutput } from '@core/category/application/use-cases/common/category-output';
 
 @Controller('categories')
 export class CategoriesController {
@@ -27,10 +29,10 @@ export class CategoriesController {
   @Inject(ListCategoriesUseCase)
   private ListUseCase: ListCategoriesUseCase;
 
-  constructor() { }
-
   @Post()
-  create(@Body() createCategoryDto: CreateCategoryDto) {
+  async create(@Body() createCategoryDto: CreateCategoryDto) {
+    const output = await this.createUseCase.execute(createCategoryDto);
+    return CategoriesController.serialize(output);
   }
 
   @Get()
@@ -47,5 +49,8 @@ export class CategoriesController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
+  }
+  static serialize(output: CategoryOutput) {
+    return new CategoryPresenter(output);
   }
 }
