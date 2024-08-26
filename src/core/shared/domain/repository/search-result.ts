@@ -8,7 +8,7 @@ type SearchResultConstructorProps<E extends Entity> = {
   total: number;
   current_page: number;
   per_page: number;
-  last_page: number;
+  last_page?: number;
 };
 
 export class SearchResult<E extends Entity = Entity> extends ValueObject {

@@ -5,7 +5,9 @@ import { Category } from "../../../domain/category.entity";
 import { CategorySearchParams, CategorySearchResult, ICategoryRepository } from "../../../domain/category.repository";
 import { CategoryModel } from "./category.model";
 import { CategoryModelMapper } from "./category-model-mapper";
+import { Injectable } from "@nestjs/common";
 
+@Injectable()
 export class CategorySequelizeRepository implements ICategoryRepository {
   sortableFields: string[] = ['name', 'created_at'];
 
@@ -76,7 +78,7 @@ export class CategorySequelizeRepository implements ICategoryRepository {
         },
       }),
       ...(props.sort && this.sortableFields.includes(props.sort)
-        ? { order: [[props.sort, props.sort_dir]] }
+        ? { order: [[props.sort, props.sort_dir!]] }
         : { order: [['created_at', 'desc']] }
       ),
       offset,

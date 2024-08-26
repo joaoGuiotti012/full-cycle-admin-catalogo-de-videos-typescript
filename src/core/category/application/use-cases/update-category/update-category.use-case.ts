@@ -24,7 +24,7 @@ export class UpdateCategoryUseCase
 
     input.name && entity.changeName(input.name);
 
-    if ('description' in input)
+    if (!!input.description)
       entity.changeDescription(input.description);
 
     if (input.is_active === true)

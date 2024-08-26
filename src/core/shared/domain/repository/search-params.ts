@@ -14,16 +14,16 @@ export class SearchParams<Filter = string> extends ValueObject {
   protected _page: number;
   protected _per_page: number = 15;
   protected _sort: string | null;
-  protected _sort_dir?: SortDirection | null;
-  protected _filter?: Filter | null;
+  protected _sort_dir: SortDirection | null;
+  protected _filter: Filter | null;
 
   constructor(props: SearchParamsConstructorProps<Filter> = {}) {
     super();
-    this.page = props.page;
-    this.per_page = props.per_page;
-    this.sort = props.sort;
-    this.sort_dir = props.sort_dir;
-    this.filter = props.filter;
+    this.page = props.page!;
+    this.per_page = props.per_page!;
+    this.sort = props.sort!;
+    this.sort_dir = props.sort_dir!;
+    this.filter = props.filter!;
   }
 
   get page() {
