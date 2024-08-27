@@ -29,7 +29,7 @@ export class Category extends Entity {
 
   constructor(props: CategoryConstructorProps) {
     super();
-    this.category_id = props.category_id ?? Uuid.create();
+    this.category_id = props.category_id ?? new Uuid();
     this.name = props.name;
     this.description = props.description ?? null;
     this.is_active = props.is_active ?? true;
@@ -43,7 +43,7 @@ export class Category extends Entity {
   // Factory method
   // Eventos de dominio
   static create(props: CategoryCreateCommand): Category {
-    const category = new Category(Object.assign(props));
+    const category = new Category(props);
     category.validate(['name']);
     return category;
   }
@@ -58,7 +58,7 @@ export class Category extends Entity {
     this.validate(['name']);
   }
 
-  changeDescription(description: string) {
+  changeDescription(description: string | null) {
     this.description = description;
   }
 
@@ -81,7 +81,7 @@ export class Category extends Entity {
 
   toJSON() {
     return {
-      category_id: this.category_id,
+      category_id: this.category_id.id,
       name: this.name,
       description: this.description,
       is_active: this.is_active,

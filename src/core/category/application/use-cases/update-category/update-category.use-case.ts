@@ -15,31 +15,35 @@ export class UpdateCategoryUseCase
   constructor(private readonly categoryRepo: ICategoryRepository) { }
 
   async execute(input: UpdateCategoryInput): Promise<UpdateCategoryOutput> {
-    const uuid = new Uuid(input.id);
-    const entity = await this.categoryRepo.findById(uuid);
+    const categoryId = new Uuid(input.id);
+    const category = await this.categoryRepo.findById(categoryId);
 
-    if (!entity) {
+    if (!category) {
       throw new NotFoundError(input.id, Category);
     }
 
-    input.name && entity.changeName(input.name);
+    input.name && category.changeName(input.name);
 
-    if (!!input.description)
-      entity.changeDescription(input.description);
-
-    if (input.is_active === true)
-      entity.activate()
-
-    if (input.is_active === false)
-      entity.deactivate();
-
-    if (entity.notification.hasErrors()) {
-      throw new EntityValidationError(entity.notification.toJSON());
+    if (input.description !== undefined) {
+      category.changeDescription(input.description);
     }
 
-    await this.categoryRepo.update(entity);
+    if (input.is_active === true) {
+      category.activate();
+    }
 
-    return CategoryOutputMapper.toOutput(entity)
+    if (input.is_active === false) {
+      category.deactivate();
+    }
+
+    if (category.notification.hasErrors()) {
+      throw new EntityValidationError(category.notification.toJSON());
+    }
+
+
+    await this.categoryRepo.update(category);
+
+    return CategoryOutputMapper.toOutput(category);
   }
 
 }

@@ -35,7 +35,7 @@ export abstract class InMemoryRepository<E extends Entity, EntityId extends Valu
   }
 
   async findById(entity_id: EntityId): Promise<E | null> {
-    const item = this.items.find((i) => i.entity_id.equals(entity_id));
+    const item = this.items.find((item) => item.entity_id.equals(entity_id));
     return typeof item === 'undefined' ? null : item;
   }
 

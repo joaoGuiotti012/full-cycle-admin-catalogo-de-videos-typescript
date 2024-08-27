@@ -1,7 +1,6 @@
 import { Chance } from 'chance';
 import { Uuid } from '../../shared/domain/value-objects/uuid.vo';
 import { Category } from './category.entity';
-import { CategoryValidator } from './category.validator';
 
 type PropOrFactory<T> = T | ((index: number) => T);
 

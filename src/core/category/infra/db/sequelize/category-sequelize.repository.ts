@@ -27,14 +27,18 @@ export class CategorySequelizeRepository implements ICategoryRepository {
 
   async update(entity: Category): Promise<void> {
     const id = entity.category_id.id;
-    const model = await this._get(id);
-    if (!model) {
+
+    const modelProps = CategoryModelMapper.toModel(entity);
+    const [affectedRows] = await this.categoryModel.update(
+      modelProps.toJSON(),
+      {
+        where: { category_id: entity.category_id.id },
+      },
+    );
+
+    if (affectedRows !== 1) {
       throw new NotFoundError(id, this.getEntity());
     }
-    const modelProps = CategoryModelMapper.toModel(entity)
-    this.categoryModel.update(
-      modelProps.toJSON(),
-      { where: { category_id: id } });
   }
 
   async delete(entity_id: Uuid): Promise<void> {
@@ -42,12 +46,12 @@ export class CategorySequelizeRepository implements ICategoryRepository {
     const model = await this._get(id);
     if (!model) {
       throw new NotFoundError(id, this.getEntity());
-    } 
+    }
     this.categoryModel.destroy({ where: { category_id: id } });
   }
 
   async findById(entity_id: Uuid): Promise<Category | null> {
-    const model = await this._get(entity_id.id);
+    const model = await this.categoryModel.findByPk(entity_id.id);
     return model ? CategoryModelMapper.toEntity(model) : null;
   }
 

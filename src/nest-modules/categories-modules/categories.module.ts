@@ -6,14 +6,15 @@ import { CATEGORY_PROVIDERS } from './categories.provider';
 
 @Module({
   imports: [
-    SequelizeModule.forFeature([
-      CategoryModel
-    ])
+    SequelizeModule.forFeature([CategoryModel])
   ],
   controllers: [CategoriesController],
   providers: [
     ...Object.values(CATEGORY_PROVIDERS.REPOSITORIES),
-    ...Object.values(CATEGORY_PROVIDERS.USE_CASES)
+    ...Object.values(CATEGORY_PROVIDERS.USE_CASES),
   ],
+  exports: [
+    CATEGORY_PROVIDERS.REPOSITORIES.CATEGORY_REPOSITORY.provide,
+  ]
 })
 export class CategoriesModule { }

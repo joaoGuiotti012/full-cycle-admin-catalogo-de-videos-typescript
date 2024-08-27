@@ -6,7 +6,7 @@ import {
   CreateCategoryUseCase,
   UpdateCategoryUseCase,
   DeleteCategoryUseCase,
-  ListCategoriesUseCase, 
+  ListCategoriesUseCase,
 } from '@core/category/application/use-cases';
 import { CategoryCollectionPresenter, CategoryPresenter } from './category.presenter';
 import { CategoryOutput } from '@core/category/application/use-cases/common/category-output';
