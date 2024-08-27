@@ -1,7 +1,6 @@
 import { Exclude, Expose } from "class-transformer";
 import { PaginationPresenter, PaginationPresenterProps } from "./pagination.presenter";
 
-
 export abstract class CollectionPresenter {
 
   @Exclude()
