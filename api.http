@@ -3,8 +3,7 @@ POST http://localhost:3000/categories
 Content-Type: application/json
 
 { 
-  "name": "aaaaaaaaaaa",
-  "description": "Description 1"
+  "name": "raifajoowtokeotiubuocodit udewkovguvihdiepgifomabufdogemisipwacodakizingoleihenemaktohmutlaznostadubbucuctadezejubguvamufurretamvebtangiwnavimaposfatabzumuturnoriralizafeptelmogaretiagahiktiemofalurakugulabuirrajmukibwiffijecasaimdoegujisesmanenimjowuzobepa"
 }
 ###
 GET http://localhost:3000/categories 

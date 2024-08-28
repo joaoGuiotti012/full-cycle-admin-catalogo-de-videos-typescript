@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsOptional, IsString, validateSync } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsOptional, IsString, Length, validateSync } from "class-validator";
 
 export type CreateCategoryInputConstructorProps = {
   name: string;
