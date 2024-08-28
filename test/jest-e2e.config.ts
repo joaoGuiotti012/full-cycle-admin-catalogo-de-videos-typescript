@@ -8,9 +8,9 @@ const config: Config = {
   coverageProvider: 'v8',
   testRegex: '.e2e-spec.ts$',
   transform: {
-    '^.+\\.(t|j)s$': '@swc/jest'
+    '^.+\\.(t|j)s$': '@swc/jest',
   },
-  setupFilesAfterEnv: ['./jest-setup.ts']
-}
+  setupFilesAfterEnv: ['./jest-setup.ts'],
+};
 
 export default config;
