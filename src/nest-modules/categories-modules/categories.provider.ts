@@ -5,8 +5,6 @@ import { CategorySequelizeRepository } from "@core/category/infra/db/sequelize/c
 import { CategoryModel } from "@core/category/infra/db/sequelize/category.model";
 import { getModelToken } from "@nestjs/sequelize";
 
- 
-
 export const REPOSITORIES = {
   CATEGORY_REPOSITORY: {
     provide: 'CategoryRepository',

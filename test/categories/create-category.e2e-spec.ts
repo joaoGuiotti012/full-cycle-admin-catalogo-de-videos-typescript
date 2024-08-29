@@ -2,11 +2,11 @@ import { CreateCategoryFixture } from "src/nest-modules/categories-modules/testi
 import { ICategoryRepository } from "@core/category/domain/category.repository";
 import { CATEGORY_PROVIDERS } from "src/nest-modules/categories-modules/categories.provider";
 import { startApp, StartHelper } from "src/nest-modules/shared-module/testing/helper";
-import request from 'supertest';
 import { Uuid } from "@core/shared/domain/value-objects/uuid.vo";
 import { CategoriesController } from "src/nest-modules/categories-modules/categories.controller";
 import { CategoryOutputMapper } from "@core/category/application/use-cases/common/category-output";
 import { instanceToPlain } from "class-transformer";
+import request from 'supertest';
 
 describe('CategoriesController (e2e)', () => {
   const appHelper: StartHelper = startApp();
