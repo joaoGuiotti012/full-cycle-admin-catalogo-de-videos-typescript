@@ -4,7 +4,7 @@ import { CATEGORY_PROVIDERS } from "src/nest-modules/categories-modules/categori
 import { startApp } from "src/nest-modules/shared-module/testing/helper";
 import request from 'supertest';
 
-fdescribe('CategoriesController (e2e)', () => {
+describe('CategoriesController (e2e)', () => {
 
   describe('/delete/:id (DELETE)', () => {
     const appHelper = startApp();

@@ -53,11 +53,11 @@ export class CategoriesController {
   @Patch(':id')
   async update(
     @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: 422 })) id: string,
-    @Body() updateCategoryDto: UpdateCategoryDto
+    @Body() updateCategoryDto: UpdateCategoryDto,
   ) {
     const output = await this.updateUseCase.execute({
       ...updateCategoryDto,
-      id
+      id,
     });
     return CategoriesController.serialize(output);
   }
