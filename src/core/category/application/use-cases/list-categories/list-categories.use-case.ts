@@ -13,14 +13,13 @@ export class ListCategoriesUseCase
     const params = new CategorySearchParams(input);
     const searchResult = await this.repo.search(params);
     return this.toOutput(searchResult);
-
   }
 
-  private toOutput(searchResult: CategorySearchResult) {
+  private toOutput(searchResult: CategorySearchResult): ListCategoriesOutput {
     const { items: _items } = searchResult;
-    const items = _items.map((item) =>
-      CategoryOutputMapper.toOutput(item)
-    );
+    const items = _items.map((i) => {
+      return CategoryOutputMapper.toOutput(i);
+    });
     return PaginationOutputMapper.toOutput(items, searchResult);
   }
 }

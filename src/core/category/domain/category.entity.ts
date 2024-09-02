@@ -48,11 +48,6 @@ export class Category extends Entity {
     return category;
   }
 
-  update(props: Partial<CategoryConstructorProps>): Category {
-    Object.assign(this, props);
-    return this;
-  }
-
   changeName(name: string): void {
     this.name = name;
     this.validate(['name']);
@@ -86,7 +81,7 @@ export class Category extends Entity {
       description: this.description,
       is_active: this.is_active,
       created_at: this.created_at,
-    }
+    };
   }
 }
 //livres de efeitos colatereias

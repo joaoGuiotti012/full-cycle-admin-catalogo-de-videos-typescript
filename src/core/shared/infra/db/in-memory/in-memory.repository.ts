@@ -59,14 +59,12 @@ export abstract class InMemorySearchableRepository<
     const itemsFiltered = await this.applyFilter(this.items, props.filter);
     const itemsSorted = this.applySort(itemsFiltered, props.sort, props.sort_dir);
     const itemsPaginated = this.applyPaginate(itemsSorted, props.page, props.per_page);
-
     return new SearchResult({
       items: itemsPaginated,
       total: itemsFiltered.length,
       current_page: props.page,
       per_page: props.per_page,
     });
-
   }
 
   protected abstract applyFilter(items: E[], filter: Filter | null): Promise<E[]>;

@@ -1,4 +1,4 @@
-import { ValueObject } from "../value-object";
+import { ValueObject } from '../value-object';
 
 export type SortDirection = 'asc' | 'desc';
 
@@ -8,7 +8,7 @@ export type SearchParamsConstructorProps<Filter = string> = {
   sort?: string | null;
   sort_dir?: SortDirection | null;
   filter?: Filter | null;
-}
+};
 
 export class SearchParams<Filter = string> extends ValueObject {
   protected _page: number;

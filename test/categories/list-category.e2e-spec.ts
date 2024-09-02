@@ -1,4 +1,4 @@
-import { ICategoryRepository } from "@core/category/domain/category.repository";
+import { CategorySearchParams, ICategoryRepository } from "@core/category/domain/category.repository";
 import request from "supertest";
 import { CATEGORY_PROVIDERS } from "src/nest-modules/categories-modules/categories.provider";
 import { ListCategoriesFixture } from "src/nest-modules/categories-modules/testing/category-fixture";
@@ -39,17 +39,16 @@ describe('CategoriesController (e2e)', () => {
       });
     });
 
-
     describe('should return categories using paginate, filter and sort', () => {
-      let categoryRepo: ICategoryRepository;
       const nestApp = startApp();
       const { entitiesMap, arrange } = ListCategoriesFixture.arrangeUnsorted();
+      let repo: ICategoryRepository;
 
       beforeEach(async () => {
-        categoryRepo = nestApp.app.get<ICategoryRepository>(
+        repo = nestApp.app.get<ICategoryRepository>(
           CATEGORY_PROVIDERS.REPOSITORIES.CATEGORY_REPOSITORY.provide,
         );
-        await categoryRepo.bulkInsert(Object.values(entitiesMap));
+        await repo.bulkInsert(Object.values(entitiesMap));
       });
 
       test.each([arrange])(
@@ -65,7 +64,6 @@ describe('CategoriesController (e2e)', () => {
               )),
               meta: expected.meta
             });
-
         });
 
     });

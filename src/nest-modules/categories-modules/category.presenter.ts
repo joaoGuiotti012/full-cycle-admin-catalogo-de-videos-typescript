@@ -27,6 +27,6 @@ export class CategoryCollectionPresenter extends CollectionPresenter {
   constructor(output: ListCategoriesOutput) {
     const { items, ...paginationProps } = output;
     super(paginationProps);
-    this.data = items.map((item) => new CategoryPresenter(item));
+    this.data = items.map((i) => new CategoryPresenter(i));
   }
 }
