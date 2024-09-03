@@ -9,7 +9,7 @@ services:
     volumes:
       - .:/home/node/app
 
-  db:
+  db: 
     image: mysql:8.0.30-debian
     environment:
       - MYSQL_DATABASE=micro_videos
