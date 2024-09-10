@@ -25,3 +25,21 @@ export function migrator(
     ...(options ?? {})
   });
 }
+
+/**
+  ORM - Validação de sincronização de schema do banco
+
+  rodo as migrações 
+  validar a sincronização --- ok
+
+ *  Teste de validação Schema(mysql que é o banco de dados de produção)
+ * 
+ * - gerar o schema do banco via models
+ * - gerar o schema so banco via mudança
+ * - gero um dump do schema1 e schema2
+ * 
+ */
+
+
+
+

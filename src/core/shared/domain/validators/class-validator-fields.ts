@@ -3,7 +3,7 @@ import { IValidatorFields } from './validator-fields-interface';
 import { Notification } from './notification';
 
 export abstract class ClassValidatorFields implements IValidatorFields {
-  validate(notification: Notification, data: any, fields: string[]): boolean {
+  validate(notification: Notification, data: any, fields?: string[]): boolean {
     const errors = validateSync(data, {
       groups: fields,
     });

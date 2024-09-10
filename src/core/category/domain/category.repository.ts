@@ -1,19 +1,13 @@
-import { Category } from "./category.entity";
-import { IRepository, ISearchableRepository } from "../../shared/domain/repository/repository-interface";
-import { Uuid } from "../../shared/domain/value-objects/uuid.vo";
+import { Category, CategoryId } from "./category.aggregate";
+import { ISearchableRepository } from "../../shared/domain/repository/repository-interface";
 import { SearchParams } from "../../shared/domain/repository/search-params";
 import { SearchResult } from "../../shared/domain/repository/search-result";
 
-
 export type CategoryFilter = string;
 
-export class CategorySearchParams extends SearchParams<CategoryFilter> {
+export class CategorySearchParams extends SearchParams<CategoryFilter> { }
 
-}
-
-export class CategorySearchResult extends SearchResult<Category> {
-
-}
+export class CategorySearchResult extends SearchResult<Category> { }
 
 // Vernon fala no livro vermelho, que, 
 // Enventualmente a gente precisa pasar aqui como parametro 
@@ -22,7 +16,7 @@ export class CategorySearchResult extends SearchResult<Category> {
 export interface ICategoryRepository
   extends ISearchableRepository<
     Category,
-    Uuid,
+    CategoryId,
     CategoryFilter,
     CategorySearchParams,
     CategorySearchResult

@@ -2,7 +2,7 @@ import { CategoryModel } from "../category.model";
 import { EntityValidationError } from "../../../../../shared/domain/validators/validation.error";
 import { CategoryModelMapper } from "../category-model-mapper";
 import { Uuid } from "../../../../../shared/domain/value-objects/uuid.vo";
-import { Category } from "../../../../domain/category.entity";
+import { Category } from "../../../../domain/category.aggregate";
 import { setupSequelize } from "../../../../../shared/infra/helpers/helpers";
 
 
@@ -15,6 +15,8 @@ describe('CategoryModelMapper Integration Test', () => {
     const model = CategoryModel.build({
       category_id: '9366b7dc-2d71-4799-b91c-c64adb205104',
       name: 'a'.repeat(256),
+      is_active: false,
+      created_at: new Date()
     });
     try {
       CategoryModelMapper.toEntity(model)
