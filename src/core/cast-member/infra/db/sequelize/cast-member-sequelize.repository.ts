@@ -2,7 +2,7 @@ import { CastMember, CastMemberId } from "@core/cast-member/domain/cast-member.a
 import { CastMemberSearchParams, CastMemberSearchResult, ICastMemberRepository } from "@core/cast-member/domain/cast-member.repository";
 import { Injectable } from "@nestjs/common";
 import { CastMemberModel } from "./cast-member.model";
-import { CastMemberMapper } from "./cast-member-mapper";
+import { CastMemberModelMapper } from "./cast-member-mapper";
 import { NotFoundError } from "@core/shared/domain/errors/not-found.error";
 import { SortDirection } from "@core/shared/domain/repository/search-params";
 import { literal, Op } from "sequelize";
@@ -35,7 +35,7 @@ export class CastMemberSequelizeRepository implements ICastMemberRepository {
       limit
     });
     return new CastMemberSearchResult({
-      items: rows.map((row) => CastMemberMapper.toEntity(row)),
+      items: rows.map((row) => CastMemberModelMapper.toEntity(row)),
       current_page: props.page,
       per_page: props.per_page,
       total: count,
@@ -51,13 +51,13 @@ export class CastMemberSequelizeRepository implements ICastMemberRepository {
   }
 
   async insert(entity: CastMember): Promise<void> {
-    const modelProps = CastMemberMapper.toModel(entity);
+    const modelProps = CastMemberModelMapper.toModel(entity);
     await this.castMemberModel.create(modelProps.toJSON());
   }
 
   async bulkInsert(entities: CastMember[]): Promise<void> {
     const modelProps = entities.map((entity) =>
-      CastMemberMapper.toModel(entity).toJSON()
+      CastMemberModelMapper.toModel(entity).toJSON()
     );
     await this.castMemberModel.bulkCreate(modelProps);
   }
@@ -65,7 +65,7 @@ export class CastMemberSequelizeRepository implements ICastMemberRepository {
   async update(entity: CastMember): Promise<void> {
     const id = entity.cast_member_id.id;
 
-    const modelProps = CastMemberMapper.toModel(entity);
+    const modelProps = CastMemberModelMapper.toModel(entity);
     const [affectedRows] = await this.castMemberModel.update(
       modelProps.toJSON(),
       {
@@ -89,13 +89,13 @@ export class CastMemberSequelizeRepository implements ICastMemberRepository {
 
   async findById(entity_id: CastMemberId): Promise<CastMember | null> {
     const model = await this.castMemberModel.findByPk(entity_id.id);
-    return model ? CastMemberMapper.toEntity(model) : null;
+    return model ? CastMemberModelMapper.toEntity(model) : null;
   }
 
   async findAll(): Promise<CastMember[]> {
     const models = await this.castMemberModel.findAll();
     return models.map((model) =>
-      CastMemberMapper.toEntity(model)
+      CastMemberModelMapper.toEntity(model)
     );
   }
 

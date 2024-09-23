@@ -1,5 +1,5 @@
 import { CastMemberTypes } from "@core/cast-member/domain/cast-member.aggregate";
-import { AllowNull, Column, DataType, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { Column, DataType, Model, PrimaryKey, Table } from "sequelize-typescript";
 
 
 export type CastMemberModelProps = {

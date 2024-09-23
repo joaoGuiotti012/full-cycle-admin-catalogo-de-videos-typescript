@@ -3,8 +3,7 @@ import { CastMemberModel } from "./cast-member.model";
 import { Uuid } from "@core/shared/domain/value-objects/uuid.vo";
 import { EntityValidationError } from "@core/shared/domain/validators/validation.error";
 
-
-export class CastMemberMapper {
+export class CastMemberModelMapper {
   static toModel(entity: CastMember): CastMemberModel {
     return CastMemberModel.build({
       cast_member_id: entity.cast_member_id.id,

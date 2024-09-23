@@ -5,7 +5,7 @@ import { CategoryModel } from "../../../../infra/db/sequelize/category.model";
 import { CategoryOutputMapper } from "../../common/category-output";
 import { ListCategoriesUseCase } from "../list-categories.use-case";
 
-describe('ListCategoryUdeCase Integration Test', () => {
+describe('ListCategoryUseCase Integration Test', () => {
   let useCase: ListCategoriesUseCase;
   let repo: CategorySequelizeRepository;
 
