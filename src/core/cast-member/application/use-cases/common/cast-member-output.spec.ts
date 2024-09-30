@@ -5,7 +5,7 @@ describe('CastMemberOutputMapper', () => {
   it('should convert a category in output', () => {
     const entity = CastMember.create({
       name: 'Movie',
-      type: CastMemberTypes.ATOR,
+      type: CastMemberTypes.ACTOR,
     });
     const spyToJson = jest.spyOn(entity, 'toJSON');
     const output = CastMemberOutputMapper.toOutput(entity);

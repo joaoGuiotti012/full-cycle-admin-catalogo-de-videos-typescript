@@ -56,7 +56,7 @@ describe('CastMemberModel Integration Test', () => {
     const arrange = {
       cast_member_id: '879878-80989-9080a8s9d-da8s797',
       name: 'Test',
-      type: CastMemberTypes.ATOR,
+      type: CastMemberTypes.ACTOR,
       created_at: new Date()
     }
     const category = await CastMemberModel.create(arrange);

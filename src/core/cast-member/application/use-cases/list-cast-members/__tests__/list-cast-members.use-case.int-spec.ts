@@ -35,11 +35,11 @@ describe('ListCastMemberUseCase Integration Test', () => {
 
   it('Should return output using pagination, sort and filter', async () => {
     const castMembers = [
-      new CastMember({ name: 'a', type: CastMemberTypes.ATOR }),
-      new CastMember({ name: 'AAA', type: CastMemberTypes.ATOR }),
-      new CastMember({ name: 'AaA', type: CastMemberTypes.ATOR }),
-      new CastMember({ name: 'b', type: CastMemberTypes.ATOR }),
-      new CastMember({ name: 'c', type: CastMemberTypes.ATOR }),
+      new CastMember({ name: 'a', type: CastMemberTypes.ACTOR }),
+      new CastMember({ name: 'AAA', type: CastMemberTypes.ACTOR }),
+      new CastMember({ name: 'AaA', type: CastMemberTypes.ACTOR }),
+      new CastMember({ name: 'b', type: CastMemberTypes.ACTOR }),
+      new CastMember({ name: 'c', type: CastMemberTypes.ACTOR }),
     ];
     await repo.bulkInsert(castMembers);
     let output = await useCase.execute({

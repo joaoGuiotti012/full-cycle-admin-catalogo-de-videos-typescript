@@ -30,7 +30,7 @@ describe('ListCastMemberUseCase Unitary Test', () => {
       last_page: 1
     });
 
-    const entity = CastMember.create({ name: 'Movie', type: CastMemberTypes.DIRETOR });
+    const entity = CastMember.create({ name: 'Movie', type: CastMemberTypes.DIRECTOR });
     result = new CastMemberSearchResult({
       items: [entity],
       total: 1,
@@ -51,7 +51,7 @@ describe('ListCastMemberUseCase Unitary Test', () => {
 
   it('shold return output sorted by created_at when input param is empty', async () => {
     const items = [
-      new CastMember({ name: 'test1', type: CastMemberTypes.ATOR }),
+      new CastMember({ name: 'test1', type: CastMemberTypes.ACTOR }),
       new CastMember({
         name: 'test2',
         type: 2,

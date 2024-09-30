@@ -24,7 +24,7 @@ describe('DeleteCastMemberUseCase Integration Test', () => {
   });
 
   it('Should delete a category', async () => {
-    const category = CastMember.fake().aCastMember().build();
+    const category = CastMember.fake().anActor().build();
     await repo.insert(category);
     await useCase.execute({ id: category.cast_member_id.id });
     await expect(repo.findById(category.cast_member_id))

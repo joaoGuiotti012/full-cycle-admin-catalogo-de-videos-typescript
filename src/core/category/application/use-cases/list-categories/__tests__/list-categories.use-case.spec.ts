@@ -4,7 +4,7 @@ import { CategoryInMemoryRepository } from "../../../../infra/db/in-memory/categ
 import { CategoryOutputMapper } from "../../common/category-output";
 import { ListCategoriesUseCase } from "../list-categories.use-case";
 
-describe('ListCategoryUdeCase Unitary Test', () => {
+describe('ListCategoryUseCase Unitary Test', () => {
   let useCase: ListCategoriesUseCase;
   let repo: CategoryInMemoryRepository;
 

@@ -10,7 +10,7 @@ describe('CastMember Without Validador Unit Tests', () => {
     let castMember = new CastMember({ name: 'João', type: 1 });
     expect(castMember.cast_member_id).toBeInstanceOf(Uuid);
     expect(castMember.name).toBe('João');
-    expect(castMember.type).toBe(CastMemberTypes.DIRETOR);
+    expect(castMember.type).toBe(CastMemberTypes.DIRECTOR);
     expect(castMember.created_at).toBeInstanceOf(Date);
     let created_at = new Date();
     castMember = new CastMember({
@@ -20,7 +20,7 @@ describe('CastMember Without Validador Unit Tests', () => {
     });
     expect(castMember.cast_member_id).toBeInstanceOf(Uuid);
     expect(castMember.name).toBe('Cast');
-    expect(castMember.type).toBe(CastMemberTypes.ATOR);
+    expect(castMember.type).toBe(CastMemberTypes.ACTOR);
     expect(castMember.created_at).toBe(created_at);
   });
 
@@ -32,7 +32,7 @@ describe('CastMember Without Validador Unit Tests', () => {
       });
       expect(castMember.cast_member_id).toBeInstanceOf(Uuid);
       expect(castMember.name).toBe('Cast 01');
-      expect(castMember.type).toBe(CastMemberTypes.ATOR);
+      expect(castMember.type).toBe(CastMemberTypes.ACTOR);
       expect(castMember.created_at).toBeInstanceOf(Date);
       expect(castMember.toJSON()).toStrictEqual({
         cast_member_id: castMember.cast_member_id.id,
@@ -46,7 +46,7 @@ describe('CastMember Without Validador Unit Tests', () => {
 
   describe('fake castMember create', () => {
     it('should create a fake castMember', () => {
-      const castMember = CastMember.fake().aCastMember().build();
+      const castMember = CastMember.fake().anActor().build();
       expect(castMember).not.toBeNull();
       expect(castMember.cast_member_id).toBeInstanceOf(Uuid);
     });
@@ -75,9 +75,9 @@ describe('CastMember Without Validador Unit Tests', () => {
 
   test('should change type', () => {
     const castMember = new CastMember({
-      name: 'Cast', type: CastMemberTypes.ATOR
+      name: 'Cast', type: CastMemberTypes.ACTOR
     });
-    castMember.changeType(CastMemberTypes.DIRETOR);
+    castMember.changeType(CastMemberTypes.DIRECTOR);
     expect(castMember.type).toBe(1);
     expect(CastMember.prototype.validate).not.toHaveBeenCalled();
     expect(castMember.notification.hasErrors()).toBe(false);

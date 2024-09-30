@@ -1,7 +1,7 @@
 import { CastMemberInMemoryRepository } from "@core/cast-member/infra/db/im-memory/cast-member-in-memory.repository";
 import { NotFoundError } from "../../../../../shared/domain/errors/not-found.error";
 import { InvalidUuidError, Uuid } from "../../../../../shared/domain/value-objects/uuid.vo";
-import { GetCastMemberUseCase } from "../get-category.use-case";
+import { GetCastMemberUseCase } from "../get-cast-member.use-case";
 import { CastMember, CastMemberTypes } from "@core/cast-member/domain/cast-member.aggregate";
 
 describe('GetCastMemberUseCase Unit Tests', () => {
@@ -23,7 +23,7 @@ describe('GetCastMemberUseCase Unit Tests', () => {
   });
 
   it('should return a category', async () => {
-    const items = [CastMember.create({ name: 'Movie', type: CastMemberTypes.ATOR })];
+    const items = [CastMember.create({ name: 'Movie', type: CastMemberTypes.ACTOR })];
     repo.items = items;
     const spyFindId = jest.spyOn(repo, 'findById');
     const output = await useCase.execute({ id: items[0].cast_member_id.id });

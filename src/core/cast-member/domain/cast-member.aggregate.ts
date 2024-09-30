@@ -6,8 +6,8 @@ import { AggreagateRoot } from "@core/shared/domain/aggregate-root";
 import { Notification } from "@core/shared/domain/validators/notification";
 
 export enum CastMemberTypes {
-  DIRETOR = 1,
-  ATOR = 2,
+  DIRECTOR = 1,
+  ACTOR = 2,
 }
 
 export type CastMemberConstructorProps = {

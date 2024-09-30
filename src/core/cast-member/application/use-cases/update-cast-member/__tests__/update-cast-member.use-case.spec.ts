@@ -15,18 +15,18 @@ describe('UpdateCastMemberUseCase Unit Test', () => {
 
   it('Should throws error when entiity not found', async () => {
     await expect(() =>
-      useCase.execute({ id: 'fake id', name: 'Fake', type: CastMemberTypes.ATOR })
+      useCase.execute({ id: 'fake id', name: 'Fake', type: CastMemberTypes.ACTOR })
     ).rejects.toThrow(new InvalidUuidError());
 
     const uuid = new Uuid();
 
     await expect(() =>
-      useCase.execute({ id: uuid.id, name: 'fake',  type: CastMemberTypes.DIRETOR })
+      useCase.execute({ id: uuid.id, name: 'fake',  type: CastMemberTypes.DIRECTOR })
     ).rejects.toThrow(new NotFoundError(uuid.id, CastMember));
   });
   it('Should throws error when entiity not found', async () => {
     const spyUpdate = jest.spyOn(repository, 'update');
-    const entity = new CastMember({ name: 'test', type: CastMemberTypes.ATOR });
+    const entity = new CastMember({ name: 'test', type: CastMemberTypes.ACTOR });
 
     repository.items = [entity];
 
@@ -64,12 +64,12 @@ describe('UpdateCastMemberUseCase Unit Test', () => {
         input: {
           id: entity.cast_member_id.id,
           name: 'test',
-          type: CastMemberTypes.DIRETOR,
+          type: CastMemberTypes.DIRECTOR,
         },
         expected: {
           id: entity.cast_member_id.id,
           name: 'test',
-          type: CastMemberTypes.DIRETOR,
+          type: CastMemberTypes.DIRECTOR,
           created_at: entity.created_at,
         },
       },
@@ -77,12 +77,12 @@ describe('UpdateCastMemberUseCase Unit Test', () => {
         input: {
           id: entity.cast_member_id.id,
           name: 'test',
-          type: CastMemberTypes.ATOR,
+          type: CastMemberTypes.ACTOR,
         },
         expected: {
           id: entity.cast_member_id.id,
           name: 'test',
-          type: CastMemberTypes.ATOR,
+          type: CastMemberTypes.ACTOR,
           created_at: entity.created_at,
         },
       },
@@ -91,12 +91,12 @@ describe('UpdateCastMemberUseCase Unit Test', () => {
           id: entity.cast_member_id.id,
           name: 'test',
           is_active: false,
-          type: CastMemberTypes.ATOR,
+          type: CastMemberTypes.ACTOR,
         },
         expected: {
           id: entity.cast_member_id.id,
           name: 'test',
-          type: CastMemberTypes.ATOR,
+          type: CastMemberTypes.ACTOR,
           created_at: entity.created_at,
         },
       },
@@ -104,12 +104,12 @@ describe('UpdateCastMemberUseCase Unit Test', () => {
         input: {
           id: entity.cast_member_id.id,
           name: 'test',
-          type: CastMemberTypes.DIRETOR,
+          type: CastMemberTypes.DIRECTOR,
         },
         expected: {
           id: entity.cast_member_id.id,
           name: 'test',
-          type: CastMemberTypes.DIRETOR,
+          type: CastMemberTypes.DIRECTOR,
           created_at: entity.created_at,
         },
       },
@@ -117,12 +117,12 @@ describe('UpdateCastMemberUseCase Unit Test', () => {
         input: {
           id: entity.cast_member_id.id,
           name: 'test',
-          type: CastMemberTypes.ATOR,
+          type: CastMemberTypes.ACTOR,
         },
         expected: {
           id: entity.cast_member_id.id,
           name: 'test',
-          type: CastMemberTypes.ATOR,
+          type: CastMemberTypes.ACTOR,
           created_at: entity.created_at,
         },
       },
@@ -130,12 +130,12 @@ describe('UpdateCastMemberUseCase Unit Test', () => {
         input: {
           id: entity.cast_member_id.id,
           name: 'test',
-          type: CastMemberTypes.ATOR,
+          type: CastMemberTypes.ACTOR,
         },
         expected: {
           id: entity.cast_member_id.id,
           name: 'test',
-          type: CastMemberTypes.ATOR,
+          type: CastMemberTypes.ACTOR,
           created_at: entity.created_at,
         },
       },

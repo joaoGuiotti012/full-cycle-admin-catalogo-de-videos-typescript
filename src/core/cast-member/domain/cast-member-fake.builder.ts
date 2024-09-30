@@ -1,5 +1,5 @@
-import { CastMember, CastMemberId, CastMemberTypes } from "./cast-member.aggregate";
-import { Chance } from "chance";
+import { Chance } from 'chance';
+import { CastMember, CastMemberId, CastMemberTypes } from './cast-member.aggregate';
 
 type PropOrFactory<T> = T | ((index: number) => T);
 
@@ -16,8 +16,28 @@ export class CastMemberFakeBuilder<TBuild = any> {
 
   private countObjs;
 
-  static aCastMember() {
-    return new CastMemberFakeBuilder<CastMember>();
+  static aDirector() {
+    return new CastMemberFakeBuilder<CastMember>().withType(
+      CastMemberTypes.ACTOR,
+    );
+  }
+
+  static anActor() {
+    return new CastMemberFakeBuilder<CastMember>().withType(
+      CastMemberTypes.ACTOR,
+    );
+  }
+
+  static theActors(countObjs: number) {
+    return new CastMemberFakeBuilder<CastMember[]>(countObjs).withType(
+      CastMemberTypes.ACTOR,
+    );
+  }
+
+  static theDirectors(countObjs: number) {
+    return new CastMemberFakeBuilder<CastMember[]>(countObjs).withType(
+      CastMemberTypes.DIRECTOR,
+    );
   }
 
   static theCastMembers(countObjs: number) {
@@ -41,7 +61,7 @@ export class CastMemberFakeBuilder<TBuild = any> {
     return this;
   }
 
-  withType(valueOrFactory: PropOrFactory<CastMemberTypes | null>) {
+  withType(valueOrFactory: PropOrFactory<CastMemberTypes>) {
     this._type = valueOrFactory;
     return this;
   }
@@ -56,12 +76,8 @@ export class CastMemberFakeBuilder<TBuild = any> {
     return this;
   }
 
-  withInvalidType(value?: number) {
-    this._type = value ?? this.chance.integer({ min: 3, max: 99 });
-  }
-
   build(): TBuild {
-    const categories = new Array(this.countObjs)
+    const castMembers = new Array(this.countObjs)
       .fill(undefined)
       .map((_, index) => {
         const castMember = new CastMember({
@@ -77,7 +93,7 @@ export class CastMemberFakeBuilder<TBuild = any> {
         castMember.validate();
         return castMember;
       });
-    return this.countObjs === 1 ? (categories[0] as any) : categories;
+    return this.countObjs === 1 ? (castMembers[0] as any) : castMembers;
   }
 
   get cast_member_id() {
@@ -112,4 +128,4 @@ export class CastMemberFakeBuilder<TBuild = any> {
       ? factoryOrValue(index)
       : factoryOrValue;
   }
-} 
+}

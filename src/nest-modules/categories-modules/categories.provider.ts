@@ -64,4 +64,4 @@ export const USE_CASES = {
 export const CATEGORY_PROVIDERS = {
   REPOSITORIES,
   USE_CASES
-}
+};

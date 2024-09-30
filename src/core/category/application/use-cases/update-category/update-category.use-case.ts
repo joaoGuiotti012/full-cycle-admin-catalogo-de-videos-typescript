@@ -39,7 +39,6 @@ export class UpdateCategoryUseCase
       throw new EntityValidationError(category.notification.toJSON());
     }
 
-
     await this.categoryRepo.update(category);
 
     return CategoryOutputMapper.toOutput(category);

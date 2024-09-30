@@ -18,12 +18,12 @@ describe('CastMemberSequelizeRepository Integration it', () => {
   });
 
   it('Should insert a new category', async () => {
-    let category = CastMember.fake().aCastMember().withName('movie').build();
+    let category = CastMember.fake().anActor().withName('movie').build();
     await repository.insert(category);
     let entity = await repository.findById(category.cast_member_id);
     expect(entity?.toJSON()).toStrictEqual(category.toJSON());
 
-    category = CastMember.fake().aCastMember()
+    category = CastMember.fake().anActor()
       .withName('Movie')
       .build();
 
@@ -36,14 +36,14 @@ describe('CastMemberSequelizeRepository Integration it', () => {
     let entityFound = await repository.findById(new Uuid());
     expect(entityFound).toBeNull();
 
-    const category = CastMember.fake().aCastMember().withName('Movie').build();
+    const category = CastMember.fake().anActor().withName('Movie').build();
     await repository.insert(category);
     entityFound = await repository.findById(category.cast_member_id);
     expect(category.toJSON()).toStrictEqual(entityFound?.toJSON());
   });
 
   it('Should return all categories', async () => {
-    let category = CastMember.fake().aCastMember().withName('Movie').build();
+    let category = CastMember.fake().anActor().withName('Movie').build();
     await repository.insert(category);
     const entities = await repository.findAll();
     expect(entities).toHaveLength(1);
@@ -52,14 +52,14 @@ describe('CastMemberSequelizeRepository Integration it', () => {
   });
 
   it('Should throw error on update when a entity not found', async () => {
-    const category = CastMember.fake().aCastMember().build();
+    const category = CastMember.fake().anActor().build();
     await expect(repository.update(category)).rejects.toThrow(
       new NotFoundError(category.cast_member_id.id, CastMember)
     );
   });
 
   it('Should update a entity', async () => {
-    const category = CastMember.fake().aCastMember().build();
+    const category = CastMember.fake().anActor().build();
     await repository.insert(category);
 
     category.changeName('Movie Update');
@@ -70,14 +70,14 @@ describe('CastMemberSequelizeRepository Integration it', () => {
   });
 
   it('Should throw error on delete when a entity not found', async () => {
-    const category = CastMember.fake().aCastMember().build();
+    const category = CastMember.fake().anActor().build();
     await expect(repository.delete(category.cast_member_id)).rejects.toThrow(
       new NotFoundError(category.cast_member_id.id, CastMember)
     );
   });
 
   it('Should throw error on delete when a entity not found', async () => {
-    const category = CastMember.fake().aCastMember().build();
+    const category = CastMember.fake().anActor().build();
     await repository.insert(category);
 
     await repository.delete(category.cast_member_id);
@@ -92,7 +92,7 @@ describe('CastMemberSequelizeRepository Integration it', () => {
       const categories = CastMember.fake()
         .theCastMembers(16)
         .withName('Movie')
-        .withType(CastMemberTypes.ATOR)
+        .withType(CastMemberTypes.ACTOR)
         .withCreatedAt(created_at)
         .build();
 
@@ -119,7 +119,7 @@ describe('CastMemberSequelizeRepository Integration it', () => {
       expect(items).toMatchObject(
         new Array(15).fill({
           name: 'Movie',
-          type: CastMemberTypes.ATOR,
+          type: CastMemberTypes.ACTOR,
           created_at
         })
       );
@@ -131,7 +131,7 @@ describe('CastMemberSequelizeRepository Integration it', () => {
       const categories = CastMember.fake()
         .theCastMembers(16)
         .withName((index) => `Movie ${index}`)
-        .withType(CastMemberTypes.ATOR)
+        .withType(CastMemberTypes.ACTOR)
         .withCreatedAt((index) => new Date(created_at.getTime() + index))
         .build();
       await repository.bulkInsert(categories);
@@ -145,19 +145,19 @@ describe('CastMemberSequelizeRepository Integration it', () => {
 
     it('Should apply paginate and filter', async () => {
       const categories = [
-        CastMember.fake().aCastMember()
+        CastMember.fake().anActor()
           .withName('test')
           .withCreatedAt(new Date(new Date().getTime() + 5000))
           .build(),
-        CastMember.fake().aCastMember()
+        CastMember.fake().anActor()
           .withName('a')
           .withCreatedAt(new Date(new Date().getTime() + 4000))
           .build(),
-        CastMember.fake().aCastMember()
+        CastMember.fake().anActor()
           .withName('TEST')
           .withCreatedAt(new Date(new Date().getTime() + 3000))
           .build(),
-        CastMember.fake().aCastMember()
+        CastMember.fake().anActor()
           .withName('TeSt')
           .withCreatedAt(new Date(new Date().getTime() + 1000))
           .build(),
@@ -202,11 +202,11 @@ describe('CastMemberSequelizeRepository Integration it', () => {
       expect(repository.sortableFields).toStrictEqual(['name', 'created_at']);
 
       const categories = [
-        CastMember.fake().aCastMember().withName('b').build(),
-        CastMember.fake().aCastMember().withName('a').build(),
-        CastMember.fake().aCastMember().withName('d').build(),
-        CastMember.fake().aCastMember().withName('e').build(),
-        CastMember.fake().aCastMember().withName('c').build(),
+        CastMember.fake().anActor().withName('b').build(),
+        CastMember.fake().anActor().withName('a').build(),
+        CastMember.fake().anActor().withName('d').build(),
+        CastMember.fake().anActor().withName('e').build(),
+        CastMember.fake().anActor().withName('c').build(),
       ];
 
       await repository.bulkInsert(categories);
@@ -261,11 +261,11 @@ describe('CastMemberSequelizeRepository Integration it', () => {
 
     describe('should search using filter, sort and paginate', () => {
       const categories = [
-        CastMember.fake().aCastMember().withName('test').build(),
-        CastMember.fake().aCastMember().withName('a').build(),
-        CastMember.fake().aCastMember().withName('TEST').build(),
-        CastMember.fake().aCastMember().withName('e').build(),
-        CastMember.fake().aCastMember().withName('TeSt').build(),
+        CastMember.fake().anActor().withName('test').build(),
+        CastMember.fake().anActor().withName('a').build(),
+        CastMember.fake().anActor().withName('TEST').build(),
+        CastMember.fake().anActor().withName('e').build(),
+        CastMember.fake().anActor().withName('TeSt').build(),
       ];
 
       const arrange = [

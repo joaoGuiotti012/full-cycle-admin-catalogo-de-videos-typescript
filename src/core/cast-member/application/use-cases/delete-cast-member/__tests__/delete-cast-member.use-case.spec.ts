@@ -26,7 +26,7 @@ describe('DeleteCastMemberUseCase Unit Tests', () => {
   });
 
   it('should delete a category', async () => {
-    const items = [new CastMember({ name: 'test 1', type: CastMemberTypes.ATOR })];
+    const items = [new CastMember({ name: 'test 1', type: CastMemberTypes.ACTOR })];
     repository.items = items;
     await useCase.execute({
       id: items[0].cast_member_id.id,

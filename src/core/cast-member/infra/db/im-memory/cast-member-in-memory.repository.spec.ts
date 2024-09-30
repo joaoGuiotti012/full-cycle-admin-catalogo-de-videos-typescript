@@ -7,7 +7,7 @@ describe('CastMemberInMemoryRepository', () => {
   beforeEach(() => (repo = new CastMemberInMemoryRepository()));
 
   it('Should no filter items when filter object is null', async () => {
-    const items = [CastMember.fake().aCastMember().build()];
+    const items = [CastMember.fake().anActor().build()];
     const filterSpy = jest.spyOn(items, 'filter' as any);
 
     const itemsFiltered = await repo['applyFilter'](items, null!);
@@ -17,9 +17,9 @@ describe('CastMemberInMemoryRepository', () => {
 
   it('Sould filter items using parameter', async () => {
     const items = [
-      CastMember.fake().aCastMember().withName('test').build(),
-      CastMember.fake().aCastMember().withName('TEST').build(),
-      CastMember.fake().aCastMember().withName('fake').build()
+      CastMember.fake().anActor().withName('test').build(),
+      CastMember.fake().anActor().withName('TEST').build(),
+      CastMember.fake().anActor().withName('fake').build()
     ];
     const filterSpy = jest.spyOn(items, 'filter');
 
@@ -36,22 +36,22 @@ describe('CastMemberInMemoryRepository', () => {
     const createTime = (ms: number) => new Date(created_at.getTime() + ms);
     const items = [
       CastMember.fake()
-        .aCastMember()
+        .anActor()
         .withName('test')
         .withCreatedAt(createTime(50))
         .build(),
       CastMember.fake()
-        .aCastMember()
+        .anActor()
         .withName('test 1')
         .withCreatedAt(createTime(100))
         .build(),
       CastMember.fake()
-        .aCastMember()
+        .anActor()
         .withName('test 2')
         .withCreatedAt(createTime(200))
         .build(),
       CastMember.fake()
-        .aCastMember()
+        .anActor()
         .withName('test 3')
         .withCreatedAt(createTime(300))
         .build()
@@ -62,9 +62,9 @@ describe('CastMemberInMemoryRepository', () => {
 
   it('Shloud sort by name', async () => {
     const items = [
-      CastMember.fake().aCastMember().withName('c').build(),
-      CastMember.fake().aCastMember().withName('b').build(),
-      CastMember.fake().aCastMember().withName('a').build(),
+      CastMember.fake().anActor().withName('c').build(),
+      CastMember.fake().anActor().withName('b').build(),
+      CastMember.fake().anActor().withName('a').build(),
     ];
 
     let itemsSorted = await repo['applySort'](items, 'name', 'asc');

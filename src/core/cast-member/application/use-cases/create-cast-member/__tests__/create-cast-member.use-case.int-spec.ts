@@ -17,7 +17,7 @@ describe('CreateCastMemberUseCase Integration Test', () => {
   });
 
   it('Should create a category', async () => {
-    let output = await useCase.execute({ name: 'test', type: CastMemberTypes.ATOR });
+    let output = await useCase.execute({ name: 'test', type: CastMemberTypes.ACTOR });
     let entity = await repository.findById(new Uuid(output.id));
     expect(output).toStrictEqual({
       id: entity?.cast_member_id.id,

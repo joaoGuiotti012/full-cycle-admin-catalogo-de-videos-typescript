@@ -5,7 +5,7 @@ import { CastMemberTypes } from "../cast-member.aggregate";
 
 describe('CastMemberFakeBuilder Unit Testes', () => {
 
-  const faker = CastMemberFakeBuilder.aCastMember();
+  const faker = CastMemberFakeBuilder.anActor();
 
   describe('CategoryId Prop', () => {
     test('Should throw error when any with methods has called', () => {
@@ -49,7 +49,7 @@ describe('CastMemberFakeBuilder Unit Testes', () => {
   });
 
   describe('name prop', () => {
-    const faker = CastMemberFakeBuilder.aCastMember();
+    const faker = CastMemberFakeBuilder.anActor();
     test('should be a function', () => {
       expect(typeof faker['_name']).toBe('function');
     });
@@ -101,10 +101,10 @@ describe('CastMemberFakeBuilder Unit Testes', () => {
   });
 
   describe('created_at prop', () => {
-    const faker = CastMemberFakeBuilder.aCastMember();
+    const faker = CastMemberFakeBuilder.anActor();
 
     test('should throw error when any with methods has called', () => {
-      const fakerCategory = CastMemberFakeBuilder.aCastMember();
+      const fakerCategory = CastMemberFakeBuilder.anActor();
       expect(() => fakerCategory.created_at).toThrowError(
         new Error("Property created_at not have a factory, use 'with' methods"),
       );
@@ -142,7 +142,7 @@ describe('CastMemberFakeBuilder Unit Testes', () => {
   });
 
   test('should create a castMember', () => {
-    const faker = CastMemberFakeBuilder.aCastMember();
+    const faker = CastMemberFakeBuilder.anActor();
     let castMember = faker.build();
 
     expect(castMember.cast_member_id).toBeInstanceOf(Uuid);
@@ -154,7 +154,7 @@ describe('CastMemberFakeBuilder Unit Testes', () => {
     castMember = faker
       .withCastMemberId(cast_member_id)
       .withName('name test')
-      .withType(CastMemberTypes.DIRETOR)
+      .withType(CastMemberTypes.DIRECTOR)
       .withCreatedAt(created_at)
       .build();
 
@@ -180,7 +180,7 @@ describe('CastMemberFakeBuilder Unit Testes', () => {
     categories = faker
       .withCastMemberId(cast_member_id)
       .withName('name test')
-      .withType(CastMemberTypes.ATOR)
+      .withType(CastMemberTypes.ACTOR)
       .withCreatedAt(created_at)
       .build();
 

@@ -15,7 +15,7 @@ describe('CastMemberModelMapper Integration Test', () => {
     const model = CastMemberModel.build({
       cast_member_id: '9366b7dc-2d71-4799-b91c-c64adb205104',
       name: 'a'.repeat(256),
-      type: CastMemberTypes.ATOR,
+      type: CastMemberTypes.ACTOR,
       created_at: new Date()
     });
     try {
@@ -36,7 +36,7 @@ describe('CastMemberModelMapper Integration Test', () => {
     const model = CastMemberModel.build({
       cast_member_id: '5490020a-e866-4229-9adc-aa44b83234c4',
       name: 'some value',
-      type: CastMemberTypes.ATOR,
+      type: CastMemberTypes.ACTOR,
       created_at,
     });
     const entity = CastMemberModelMapper.toEntity(model);
@@ -46,7 +46,7 @@ describe('CastMemberModelMapper Integration Test', () => {
       new CastMember({
         cast_member_id: new Uuid('5490020a-e866-4229-9adc-aa44b83234c4'),
         name: 'some value',
-        type: CastMemberTypes.ATOR,
+        type: CastMemberTypes.ACTOR,
         created_at,
       }).toJSON()
     );
